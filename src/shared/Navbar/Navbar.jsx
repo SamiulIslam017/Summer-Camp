@@ -9,7 +9,7 @@ const Navbar = () => {
         logOut().then(() => { }).catch(err => console.error(err))
     }
     return (
-        <div className="navbar bg-base-100 shadow-lg fixed top-0">
+        <div className="navbar bg-base-100 shadow-lg fixed top-0 z-50">
             <div className="w-full md:w-10/12 lg:w-10/12 mx-auto flex md:flex-row justify-between items-center">
                 <div className="flex items-center justify-center">
 
@@ -18,11 +18,11 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <Link to='/'><li><a className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Home</a></li></Link>
-                            <Link to='/classes'><li><a className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Classes</a></li></Link>
-                            <Link to='/instructors'><li><a className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Instructors</a></li></Link>
-                            <Link to='/myclasses'><li><a className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">My Classes</a></li></Link>
-                            <Link to='/dashboard'><li><a className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Dashboard</a></li></Link>
+                            <Link to='/' className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Home</Link>
+                            <Link to='/classes' className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Classes</Link>
+                            <Link to='/instructors' className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Instructors</Link>
+                            <Link to='/myclasses' className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">My Classes</Link>
+                            <Link to='/dashboard' className="p-2 hover:bg-orange hover:text-neutral-100 font-medium">Dashboard</Link>
 
                         </ul>
                     </div>
@@ -36,7 +36,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            <li>home</li>
+                            home
                         </NavLink>
                         <NavLink to='/classes' className={({ isActive }) =>
                             isActive
@@ -44,7 +44,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            <li>classes</li>
+                            classes
                         </NavLink>
                         <NavLink to='/instructors' className={({ isActive }) =>
                             isActive
@@ -52,7 +52,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            <li>instructors</li>
+                            instructors
                         </NavLink>
                         <NavLink to='/myclasses' className={({ isActive }) =>
                             isActive
@@ -60,7 +60,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            <li>my classes</li>
+                            my classes
                         </NavLink>
                         <NavLink to='/dashboard' className={({ isActive }) =>
                             isActive
@@ -68,7 +68,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            <li>dashboard</li>
+                            dashboard
                         </NavLink>
 
                     </ul>
