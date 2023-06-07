@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -74,7 +75,17 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div >
-                    {user ? <button onClick={handleLogout} className="btn border-0 bg-orange text-neutral-100 hover:bg-transparent hover:text-orange hover:border hover:border-orange">Log Out</button> : <Link to='/login'><button className="btn bg-blue text-neutral-100 border-b-0 hover:bg-transparent hover:text-blue hover:border hover:border-blue">Log In</button></Link>}
+                    {user ?
+                        <div className="dropdown">
+                            <label tabIndex={0} className="btn btn-ghost btn-circle">
+                                <span>{user.photoURL === null ? <FaUserCircle className='text-2xl' title={user.displayName} /> : <img className='w-10 h-10 rounded-full object-cover' src={user.photoURL} title={user.displayName} />}</span>
+                            </label>
+                            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-neutral-100 rounded-box">
+                                <li><button onClick={handleLogout} className="btn p-4 border-0 bg-orange text-neutral-100 hover:bg-transparent hover:text-orange hover:border hover:border-orange">Log Out</button></li>
+                            </ul>
+                        </div>
+
+                        : <Link to='/login'><button className="btn bg-blue text-neutral-100 border-b-0 hover:bg-transparent hover:text-blue hover:border hover:border-blue">Log In</button></Link>}
                 </div>
             </div>
         </div>
