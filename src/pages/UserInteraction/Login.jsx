@@ -34,14 +34,26 @@ const Login = () => {
             .then(result => {
                 const googleUser = result.user;
                 console.log(googleUser);
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Login With Google',
-                    showConfirmButton: false,
-                    timer: 1500
+                const userData = { name: googleUser.displayName, email: googleUser.email, image: googleUser.photoURL }
+                fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
                 })
-                navigate(from, { replace: true })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Successfully Login With Google',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate(from, { replace: true })
+                    })
             })
             .catch(error => {
                 console.log(error);

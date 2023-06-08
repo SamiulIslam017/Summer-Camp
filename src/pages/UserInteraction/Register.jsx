@@ -25,14 +25,30 @@ const Register = () => {
 
         try {
             await createUser(data.email, data.password, data.name, imgUpload);
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Successfully Register',
-                showConfirmButton: false,
-                timer: 1500
+            const userData = { name: data.name, email: data.email, image: imgUpload }
+            fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userData)
             })
-            navigate('/');
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Successfully Register',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate('/');
+                    }
+
+                })
+
 
         } catch (error) {
             console.log(error);
@@ -43,14 +59,27 @@ const Register = () => {
             .then(result => {
                 const googleUser = result.user;
                 console.log(googleUser);
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Successfully Login With Google',
-                    showConfirmButton: false,
-                    timer: 1500
+                const userData = { name: googleUser.displayName, email: googleUser.email, image: googleUser.photoURL }
+                fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
+                    method: "POST",
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
                 })
-                navigate('/');
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Successfully Login With Google',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate('/');
+                    })
+
             })
             .catch(error => {
                 console.log(error);

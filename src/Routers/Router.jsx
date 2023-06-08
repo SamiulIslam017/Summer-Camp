@@ -5,12 +5,12 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/UserInteraction/Login";
 import Register from "../pages/UserInteraction/register";
 import UserDashboard from "../layouts/UserDashboard";
-import InstructorDashboard from "../layouts/InstructorDashboard";
-import AdminDashboard from "../layouts/AdminDashboard";
 import MySelectedClasses from "../pages/Dashboard/UserDashboard/MySelectedClasses";
 import MyEnrolledClasses from "../pages/Dashboard/UserDashboard/MyEnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/UserDashboard/PaymentHistory";
-
+import PrivateRoute from './PrivateRoute'
+import AllUsers from "../pages/Dashboard/AdminDashboard/AllUsers";
+import AddCourse from "../pages/Dashboard/InstructorDashboard/AddCourse";
 
 
 
@@ -35,32 +35,30 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/userdashboard',
-    element: <UserDashboard></UserDashboard>,
+    path: '/dashboard',
+    element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>,
     children: [
       {
-        path: '/userdashboard/selectedClasses',
+        path: '/dashboard/selectedClasses',
         element: <MySelectedClasses></MySelectedClasses>
       },
       {
-        path: '/userdashboard/enrolledClasses',
+        path: '/dashboard/enrolledClasses',
         element: <MyEnrolledClasses></MyEnrolledClasses>
       },
       {
-        path: '/userdashboard/paymentHistory',
+        path: '/dashboard/paymentHistory',
         element: <PaymentHistory></PaymentHistory>
+      }, {
+        path: '/dashboard/allUsers',
+        element: <AllUsers></AllUsers>
+      },
+      {
+        path: '/dashboard/addCourse',
+        element: <AddCourse></AddCourse>
       }
     ]
   },
-  {
-    path: '/instructordashboard',
-    element: <InstructorDashboard></InstructorDashboard>
-  },
-  {
-    path: '/admindashboard',
-    element: <AdminDashboard></AdminDashboard>
-  },
-
 ]);
 
 export default router;

@@ -1,7 +1,11 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 
 const UserDashboard = () => {
+    const [isAdmin] = useAdmin();
+    const [isInstructor] = useInstructor();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -16,26 +20,43 @@ const UserDashboard = () => {
                     <div className="flex flex-col justify-center items-center mb-10">
                         <img className="w-14 md:w-20 lg:w-20" src="https://i.ibb.co/xDKLb0V/logo1-removebg-preview.png" alt="Footer-logo" />
                         <p className="font-bold text-blue text-xl capitalize text-center">
-                            Becomes a fashion designer <br />Welcome To User Dashboard
+                            Becomes a fashion designer <br />Welcome To Dashboard
                         </p>
                     </div>
                     {/* Sidebar content here */}
-                    <li><NavLink to='/selectedClasses' className={({ isActive }) =>
-                        isActive
-                            ? "active font-bold uppercase"
-                            : "font-bold uppercase"
-                    }>My Selected Classes</NavLink></li>
-                    <li><NavLink to='/enrolledClasses' className={({ isActive }) =>
-                        isActive
-                            ? "active font-bold uppercase"
-                            : "font-bold uppercase"
-                    }>My Enrolled Classes</NavLink></li>
-                    <li><NavLink to='/paymentHistory' className={({ isActive }) =>
-                        isActive
-                            ? "active font-bold uppercase"
-                            : "font-bold uppercase"
-                    }>Payment History</NavLink></li>
+                    {
+                        isAdmin ? <>
+                            <li><NavLink to='/dashboard/allUsers' className={({ isActive }) =>
+                                isActive
+                                    ? "active bg-neutral-300 font-bold uppercase"
+                                    : "font-bold uppercase"
+                            }>All Users</NavLink></li>
+                        </> : isInstructor ? <><li><NavLink to='/dashboard/addCourse' className={({ isActive }) =>
+                            isActive
+                                ? "active bg-neutral-300 font-bold uppercase"
+                                : "font-bold uppercase"
+                        }>Add Course</NavLink></li></> :
+                            <>
+                                <li><NavLink to='/dashboard/selectedClasses' className={({ isActive }) =>
+                                    isActive
+                                        ? "active bg-neutral-300 font-bold uppercase"
+                                        : "font-bold uppercase"
+                                }>My Selected Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/enrolledClasses' className={({ isActive }) =>
+                                    isActive
+                                        ? "active bg-neutral-300 font-bold uppercase"
+                                        : "font-bold uppercase"
+                                }>My Enrolled Classes</NavLink></li>
+                                <li><NavLink to='/dashboard/paymentHistory' className={({ isActive }) =>
+                                    isActive
+                                        ? "active bg-neutral-300 font-bold uppercase"
+                                        : "font-bold uppercase"
+                                }>Payment History</NavLink></li>
 
+
+                            </>
+
+                    }
                     <div className="divider"></div>
                     <li><Link className="font-bold uppercase" to='/'>HomePage</Link></li>
                 </ul>

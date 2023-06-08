@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from 'axios';
 
 
 export const AuthContext = createContext();
@@ -53,24 +54,16 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      // if (currentUser && currentUser.email) {
-      //   const loguser = {
-      //     email: currentUser.email
-      //   }
-      //   fetch("https://kids-toy-vendor-server.vercel.app/jwt", {
-      //     method: "POST",
-      //     headers: {
-      //       "content-type": "application/json",
-      //     },
-      //     body: JSON.stringify(loguser),
-      //   })
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       localStorage.setItem("toy-access-token", data.token);
-      //     });
-      // } else {
-      //   localStorage.removeItem('toy-access-token')
-      // }
+
+      if (currentUser) {
+        axios.post(`${import.meta.env.VITE_DOMAIN}/jwt`, { email: currentUser.email })
+          .then(data => {
+            localStorage.setItem('access-token', data.data.token)
+          })
+      }
+      else {
+        localStorage.removeItem('access-token');
+      }
     });
     return () => {
       unsubscribe();
