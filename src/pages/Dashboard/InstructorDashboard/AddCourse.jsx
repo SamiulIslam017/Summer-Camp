@@ -27,7 +27,9 @@ const AddCourse = () => {
                 price: data.price,
                 email: data.email,
                 image: imgUpload,
-                status: 'pending'
+                status: 'pending',
+                total_students: 0,
+                feedback: ''
             }
             fetch(`${import.meta.env.VITE_DOMAIN}/courses`, {
                 method: "POST",

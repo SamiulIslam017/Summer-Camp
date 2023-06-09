@@ -11,6 +11,8 @@ import PaymentHistory from "../pages/Dashboard/UserDashboard/PaymentHistory";
 import PrivateRoute from './PrivateRoute'
 import AllUsers from "../pages/Dashboard/AdminDashboard/AllUsers";
 import AddCourse from "../pages/Dashboard/InstructorDashboard/AddCourse";
+import MyCourses from "../pages/Dashboard/InstructorDashboard/MyCourses";
+import AdminRoute from "./AdminRoute";
 
 
 
@@ -51,11 +53,15 @@ const router = createBrowserRouter([
         element: <PaymentHistory></PaymentHistory>
       }, {
         path: '/dashboard/allUsers',
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: '/dashboard/addCourse',
         element: <AddCourse></AddCourse>
+      },
+      {
+        path: '/dashboard/myCourse',
+        element: <MyCourses></MyCourses>
       }
     ]
   },
