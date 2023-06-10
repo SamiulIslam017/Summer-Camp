@@ -11,13 +11,9 @@ const AddCourse = () => {
     const [imgUpload, setImageUpload] = useState('')
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
     const navigate = useNavigate();
+
+
     const onSubmit = (data) => {
-        const formData = new FormData();
-        formData.append('image', data.image[0])
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData,
-        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
         try {
 
             const courseData = {
@@ -29,7 +25,8 @@ const AddCourse = () => {
                 image: imgUpload,
                 status: 'pending',
                 total_students: 0,
-                feedback: null
+                feedback: null,
+                date: new Date(),
             }
 
             fetch(`${import.meta.env.VITE_DOMAIN}/courses`, {
@@ -60,6 +57,15 @@ const AddCourse = () => {
             console.log(error);
         }
     }
+    const handleImage = e => {
+        const formData = new FormData();
+        formData.append('image', e.target.files[0])
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData,
+        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
+    }
+    console.log(imgUpload);
     return (
         <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
             <h2 className="text-3xl text-center font-bold mb-8">Add a Course</h2>
@@ -77,7 +83,9 @@ const AddCourse = () => {
                                 type='text'
                                 placeholder='className'
                                 {...register('className', { required: true })}
+
                             />
+                            {errors.password?.type === 'required' && <span className="text-orange font-base">This field is required </span>}
                         </div>
 
                         <div className='space-y-1 text-sm'>
@@ -89,7 +97,8 @@ const AddCourse = () => {
                                 id="name"
                                 name="name"
                                 {...register('name', { required: true })}
-                                defaultValue={user?.displayName} />
+                                defaultValue={user?.displayName} readOnly />
+
                         </div>
 
                         <div className='space-y-1'>
@@ -117,7 +126,9 @@ const AddCourse = () => {
                                 type='text'
                                 placeholder='seats'
                                 {...register('seats', { required: true })}
+
                             />
+                            {errors.password?.type === 'required' && <span className="text-orange font-base">This field is required </span>}
                         </div>
 
                         <div className=' p-4 bg-white w-full  m-auto rounded-lg'>
@@ -125,10 +136,9 @@ const AddCourse = () => {
                                 <div className='flex flex-col w-max mx-auto text-center'>
                                     <label>
                                         <input type="file"
-                                            {...register('image', { required: true })}
+                                            onChange={handleImage}
                                             name="image"
                                             className="file-input file-input-bordered w-full max-w-xs" />
-                                        {errors.image && <span className="text-orange font-base">This field is required</span>}
                                     </label>
                                 </div>
                             </div>
@@ -146,6 +156,7 @@ const AddCourse = () => {
                                     placeholder='Price'
                                     {...register('price', { required: true })}
                                 />
+                                {errors.password?.type === 'required' && <span className="text-orange font-base">This field is required </span>}
                             </div>
                         </div>
                     </div>

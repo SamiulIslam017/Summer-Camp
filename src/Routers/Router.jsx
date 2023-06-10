@@ -15,6 +15,7 @@ import MyCourses from "../pages/Dashboard/InstructorDashboard/MyCourses";
 import AdminRoute from "./AdminRoute";
 import AllCourses from "../pages/Dashboard/AdminDashboard/AllCourses";
 import UpdateCourse from "../pages/Dashboard/InstructorDashboard/UpdateCourse";
+import Modal from "../components/modal";
 
 
 
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/myCourse',
         element: <MyCourses></MyCourses>
+      },
+      {
+        path: '/dashboard/modal/:id',
+        element: <Modal></Modal>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_DOMAIN}/courses/${params.id}`)
       }
     ]
   },

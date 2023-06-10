@@ -1,11 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../Provider/AuthProvider";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_API;
 const UpdateCourse = () => {
-    const { user } = useContext(AuthContext)
     const updateCourses = useLoaderData();
     const [imgUpload, setImageUpload] = useState('')
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -16,17 +14,16 @@ const UpdateCourse = () => {
         const course_name = form.className.value;
         const total_seats = form.seats.value;
         const image = imgUpload;
-        const price = form.price.value;
-        const instructor_name = user?.displayName;
-        const email = user?.email;
-        const status = updateCourses.status;
-        const total_students = updateCourses.total_students;
-        const feedback = updateCourses.feedback;
+        const price = parseFloat(form.price.value);
+        const updatedCourse = {
+            course_name: course_name,
+            total_seats: total_seats,
+            image: image,
+            price: price
+        }
 
-        const updatedCourse = { course_name, total_seats, image, price, instructor_name, email, status, total_students, feedback }
-
-        fetch(`${import.meta.env.VITE_DOMAIN}/courses/${user?.email}`, {
-            method: 'PUT',
+        fetch(`${import.meta.env.VITE_DOMAIN}/courses/update/${updateCourses._id}`, {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
             },
@@ -39,7 +36,7 @@ const UpdateCourse = () => {
                     navigate('/dashboard/myCourse');
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Coffee Updated Successfully',
+                        text: 'Course Updated Successfully',
                         icon: 'success',
                         confirmButtonText: 'Cool'
                     })
@@ -75,29 +72,7 @@ const UpdateCourse = () => {
                                 defaultValue={updateCourses.course_name}
                             />
                         </div>
-                        <div className='space-y-1 text-sm'>
-                            <label htmlFor='name' className='block text-gray-600'>
-                                Instructor name
-                            </label>
-                            <input type="text"
-                                className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md"
-                                id="name"
-                                name="name"
-                                defaultValue={user?.displayName} readOnly />
-                        </div>
 
-                        <div className='space-y-1'>
-                            <label htmlFor='email' className='block text-gray-600'>
-                                Instructor Email
-                            </label>
-                            <input type="email"
-                                className="w-full px-4 py-3 text-gray-800 border border-rose-300 focus:outline-rose-500 rounded-md"
-                                name="email"
-                                id="email"
-
-                                defaultValue={user?.email}
-                                readOnly />
-                        </div>
                         <div className=' text-sm'>
                             <label htmlFor='seats' className='block text-gray-600'>
                                 Available Seats

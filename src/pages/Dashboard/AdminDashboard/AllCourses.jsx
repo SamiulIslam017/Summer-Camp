@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import Modal from "../../../components/modal";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const AllCourses = () => {
@@ -83,8 +83,9 @@ const AllCourses = () => {
                                     <td >
                                         <button onClick={() => handleApproved(course)} className="btn btn-sm mr-2" disabled={course.status === 'approved' || course.status === 'denied' ? 'disable' : ''}>Approved</button>
                                         {/* <button  className="btn btn-sm" disabled={course.status === 'approved' || course.status === 'denied' ? 'disable' : ''}>Denied</button> */}
-                                        <button className="btn btn-sm" onClick={() => window.my_modal_5.showModal()} disabled={course.status === 'approved' || course.status === 'denied' ? 'disable' : ''}>Denied</button>
-                                        <Modal course={course}></Modal>
+                                        <Link to={`/dashboard/modal/${course._id}`}>
+                                            <button className="btn btn-sm" disabled={course.status === 'approved' || course.status === 'denied' ? 'disable' : ''}>Denied</button>
+                                        </Link>
                                     </td>
                                 </tr>
                             })

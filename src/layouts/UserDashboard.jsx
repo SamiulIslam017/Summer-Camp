@@ -4,8 +4,8 @@ import useInstructor from "../hooks/useInstructor";
 
 
 const UserDashboard = () => {
-    const [isAdmin] = useAdmin();
-    const [isInstructor] = useInstructor();
+    const [isAdmin, isAdminLoading] = useAdmin();
+    const [isInstructor, isInstructorLoading] = useInstructor();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -25,7 +25,7 @@ const UserDashboard = () => {
                     </div>
                     {/* Sidebar content here */}
                     {
-                        isAdmin ? <>
+                        isAdmin || isAdminLoading ? <>
                             <li><NavLink to='/dashboard/allUsers' className={({ isActive }) =>
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
@@ -36,7 +36,7 @@ const UserDashboard = () => {
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
                             }>Manage Courses</NavLink></li>
-                        </> : isInstructor ? <>
+                        </> : isInstructor || isInstructorLoading ? <>
                             <li><NavLink to='/dashboard/addCourse' className={({ isActive }) =>
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
