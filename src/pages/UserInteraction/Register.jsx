@@ -15,17 +15,9 @@ const Register = () => {
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     const navigate = useNavigate()
     const onSubmit = async (data) => {
-        console.log(data);
-        const formData = new FormData();
-        formData.append('image', data.image[0])
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData,
-        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
-
         try {
             await createUser(data.email, data.password, data.name, imgUpload);
-            const userData = { name: data.name, email: data.email, image: imgUpload }
+            const userData = { name: data.name, email: data.email, image: imgUpload, role: "student" }
             fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
                 method: "POST",
                 headers: {
@@ -59,7 +51,7 @@ const Register = () => {
             .then(result => {
                 const googleUser = result.user;
                 console.log(googleUser);
-                const userData = { name: googleUser.displayName, email: googleUser.email, image: googleUser.photoURL }
+                const userData = { name: googleUser.displayName, email: googleUser.email, image: googleUser.photoURL, role: 'student' }
                 fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
                     method: "POST",
                     headers: {
@@ -84,6 +76,14 @@ const Register = () => {
             .catch(error => {
                 console.log(error);
             })
+    }
+    const handleImage = e => {
+        const formData = new FormData();
+        formData.append('image', e.target.files[0])
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData,
+        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
     }
     return (
         <div className="hero  w-10/12 mx-auto">
@@ -142,8 +142,8 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Pick a file</span>
                             </label>
-                            <input type="file" {...register('image', { required: true })} name="image" className="file-input file-input-bordered w-full max-w-xs" />
-                            {errors.image && <span className="text-orange font-base">This field is required</span>}
+                            <input type="file" onChange={handleImage} name="image" className="file-input file-input-bordered w-full max-w-xs" required />
+
                         </div>
                         <div className="form-control mt-6">
                             <button type="submit" className="btn btn-primary bg-blue">Login</button>

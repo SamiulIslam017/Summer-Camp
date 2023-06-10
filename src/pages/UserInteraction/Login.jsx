@@ -34,7 +34,7 @@ const Login = () => {
             .then(result => {
                 const googleUser = result.user;
                 console.log(googleUser);
-                const userData = { name: googleUser.displayName, email: googleUser.email, image: googleUser.photoURL }
+                const userData = { name: googleUser.displayName, role: 'student', email: googleUser.email, image: googleUser.photoURL }
                 fetch(`${import.meta.env.VITE_DOMAIN}/users`, {
                     method: "POST",
                     headers: {
