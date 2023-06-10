@@ -1,3 +1,4 @@
+import InstructorSection from "./InstructorsSection/InstructorSection";
 import Slider from "./Slider/Slider";
 import WelcomeSection from "./WelcomSection/WelcomeSection";
 
@@ -8,6 +9,9 @@ const Home = () => {
             <div className="hidden md:block lg:block"><Slider></Slider></div>
             <div>
                 <WelcomeSection></WelcomeSection>
+            </div>
+            <div>
+                <InstructorSection></InstructorSection>
             </div>
         </div>
     );
