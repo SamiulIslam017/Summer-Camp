@@ -13,6 +13,8 @@ import AllUsers from "../pages/Dashboard/AdminDashboard/AllUsers";
 import AddCourse from "../pages/Dashboard/InstructorDashboard/AddCourse";
 import MyCourses from "../pages/Dashboard/InstructorDashboard/MyCourses";
 import AdminRoute from "./AdminRoute";
+import AllCourses from "../pages/Dashboard/AdminDashboard/AllCourses";
+import UpdateCourse from "../pages/Dashboard/InstructorDashboard/UpdateCourse";
 
 
 
@@ -56,8 +58,17 @@ const router = createBrowserRouter([
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
+        path: '/dashboard/allCourses',
+        element: <AdminRoute><AllCourses></AllCourses></AdminRoute>
+      },
+      {
         path: '/dashboard/addCourse',
         element: <AddCourse></AddCourse>
+      },
+      {
+        path: '/dashboard/updateCourse/:id',
+        element: <UpdateCourse></UpdateCourse>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_DOMAIN}/courses/${params.id}`)
       },
       {
         path: '/dashboard/myCourse',

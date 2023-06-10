@@ -30,7 +30,12 @@ const UserDashboard = () => {
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
-                            }>All Users</NavLink></li>
+                            }>Manage Users</NavLink></li>
+                            <li><NavLink to='/dashboard/allCourses' className={({ isActive }) =>
+                                isActive
+                                    ? "active bg-neutral-300 font-bold uppercase"
+                                    : "font-bold uppercase"
+                            }>Manage Courses</NavLink></li>
                         </> : isInstructor ? <>
                             <li><NavLink to='/dashboard/addCourse' className={({ isActive }) =>
                                 isActive

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useCourses from "../../../hooks/useCourses";
 import { FaEdit } from "react-icons/fa";
 
@@ -46,17 +47,17 @@ const MyCourses = () => {
                                         {course.total_students}
                                     </td>
                                     <td className="flex items-center gap-2">
-                                        <button className={`btn btn-sm ${course.status === 'success' ? 'bg-[green]' : course.status === 'denied' ? 'bg-[red]' : 'bg-[yellow]'} text-[black] font-medium`} aria-readonly>{course.status}</button>
+                                        <button className={`btn btn-sm ${course.status === 'approved' && 'bg-[green] text-neutral-100'} ${course.status === 'denied text-neutral-100' && 'bg-[red]'} ${course.status === 'pending' && 'bg-[yellow]'} text-[black] font-medium`} aria-readonly>{course.status}</button>
                                     </td>
 
                                     <td>
                                         {
-                                            course.status === 'denied' ? <p>{course.feedback}</p> : ''
+                                            course.status === 'denied' ? <p>{course.feedback}</p> : 'Null'
                                         }
                                     </td>
                                     <td>
-                                        <button className="btn bg-blue
-                                        btn-sm text-neutral-100"><FaEdit></FaEdit></button>
+                                        <Link to={`/dashboard/updateCourse/${course._id}`}><button className="btn bg-blue
+                                        btn-sm text-neutral-100"><FaEdit></FaEdit></button></Link>
                                     </td>
                                 </tr>
                             })
