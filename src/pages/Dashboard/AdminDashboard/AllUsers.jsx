@@ -122,6 +122,7 @@ const AllUsers = () => {
                                         <button onClick={() => handleAdmin(user)} className="btn btn-sm" disabled={user.role === 'instructor' || user.role === 'admin' ? 'disable' : ''}>Admin</button>
                                         {user.role === 'instructor' && <p>Instructor</p>}
                                         {user.role === 'admin' && <p>Admin</p>}
+                                        {user.role === 'student' && <p>Student</p>}
                                     </td>
                                     <td>
                                         <button className="btn" onClick={() => handleDelete(user)}><FaTrashAlt className="text-lg text-orange"></FaTrashAlt></button>
