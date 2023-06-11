@@ -3,6 +3,7 @@ import SectionTitle from "../../../components/SectionTitle";
 
 
 const FeatureCourse = () => {
+
     return (
         <div>
             <SectionTitle

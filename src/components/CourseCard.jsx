@@ -8,7 +8,7 @@ const CourseCard = () => {
     const { user } = useContext(AuthContext);
     const [hidden, setHidden] = useState({ user })
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_DOMAIN}/users/hidden/${user.email}`)
+        fetch(`${import.meta.env.VITE_DOMAIN}/users/hidden/${user?.email}`)
             .then(res => res.json())
             .then(data => {
 
@@ -28,7 +28,7 @@ const CourseCard = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-10 md:mb-20 lg:mb-20">
             {
-                courses.map(course => <div key={course._id} className="card glass">
+                courses.map(course => <div key={course._id} className={`card glass ${course.total_seats < 1 && 'bg-orange opacity-50'}`}>
                     <figure><img className="h-[200px] w-full object-cover" src={course.image} /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{course.course_name}</h2>
@@ -39,7 +39,7 @@ const CourseCard = () => {
                             <p className="font-bold text-orange text-xl text-right">$ {course.price}</p>
                         </div>
                         <div className="card-actions justify-center">
-                            <button className="btn bg-blue text-neutral-100 border-0 hover:bg-transparent hover:text-blue hover:border hover:border-blue" disabled={hidden.role === "instructor" || hidden.role === "admin" || course.total_seats < 0 ? 'disable' : ''}>Join Course</button>
+                            <button className="btn bg-blue text-neutral-100 border-0 hover:bg-transparent hover:text-blue hover:border hover:border-blue" disabled={hidden.role === "instructor" || hidden.role === "admin" || course.total_seats < 1 ? 'disable' : ''}>Join Course</button>
                         </div>
                     </div>
                 </div>)

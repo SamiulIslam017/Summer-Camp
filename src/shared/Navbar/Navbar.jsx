@@ -4,10 +4,14 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, loading } = useContext(AuthContext);
 
     const handleLogout = () => {
-        logOut().then(() => { }).catch(err => console.error(err))
+        if (loading) {
+            return <div className="min-h-screen flex justify-center items-center"><img src="https://i.ibb.co/GMCwfS6/loading-spinner.gif" /></div>
+        } else {
+            logOut().then(() => { }).catch(err => console.error(err))
+        }
     }
     return (
         <div className="navbar bg-base-100 shadow-lg fixed top-0 z-50">

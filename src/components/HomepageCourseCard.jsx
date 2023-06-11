@@ -8,7 +8,7 @@ const HomepageCourseCard = () => {
     const { user } = useContext(AuthContext);
     const [hidden, setHidden] = useState({ user })
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_DOMAIN}/users/hidden/${user.email}`)
+        fetch(`${import.meta.env.VITE_DOMAIN}/users/hidden/${user?.email}`)
             .then(res => res.json())
             .then(data => {
 
