@@ -2,7 +2,7 @@
 
 const SectionCards = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-0 md:gap-8 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-8">
             <div className="card shadow-2xl">
                 <div className="card-body">
                     <img className="w-20" src="https://i.ibb.co/84jtwnR/Graguate.gif" alt="" />

@@ -9,7 +9,7 @@ const Main = () => {
     return (
         <div className="min-h-screen flex flex-col justify-between">
             {hideHeaderFooter || <Navbar></Navbar>}
-            <div className="w-full md:w-10/12 lg:w-10/12 mx-auto mt-24">
+            <div className="w-full md:w-10/12 lg:w-10/12 mx-auto mt-20 md:mt-24 lg:mt-24">
                 <Outlet></Outlet>
             </div>
             {hideHeaderFooter || <Footer></Footer>}

@@ -16,6 +16,7 @@ import AdminRoute from "./AdminRoute";
 import AllCourses from "../pages/Dashboard/AdminDashboard/AllCourses";
 import UpdateCourse from "../pages/Dashboard/InstructorDashboard/UpdateCourse";
 import Modal from "../components/modal";
+import Courses from "../pages/AllCourses/Courses";
 
 
 
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
+        path: '/courses',
+        element: <Courses></Courses>
+      },
+      {
         path: '/login',
         element: <Login></Login>
       },
@@ -42,6 +47,7 @@ const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <PrivateRoute><UserDashboard></UserDashboard></PrivateRoute>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: '/dashboard/selectedClasses',

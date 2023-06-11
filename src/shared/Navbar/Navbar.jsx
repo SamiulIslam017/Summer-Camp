@@ -39,7 +39,7 @@ const Navbar = () => {
 
                             home
                         </NavLink>
-                        <NavLink to='/classes' className={({ isActive }) =>
+                        <NavLink to='/courses' className={({ isActive }) =>
                             isActive
                                 ? "active font-bold uppercase"
                                 : "font-bold uppercase"
