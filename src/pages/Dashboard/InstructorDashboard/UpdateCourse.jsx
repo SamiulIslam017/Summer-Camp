@@ -122,7 +122,7 @@ const UpdateCourse = () => {
                     type='submit'
                     className='w-full p-3 mt-5 text-center font-medium text-neutral-100 transition duration-200 rounded shadow-md bg-blue'
                 >
-                    Add a course
+                    Update course
                 </button>
             </form>
         </div>

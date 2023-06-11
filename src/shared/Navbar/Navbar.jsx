@@ -45,7 +45,7 @@ const Navbar = () => {
                                 : "font-bold uppercase"
                         }>
 
-                            classes
+                            Courses
                         </NavLink>
                         <NavLink to='/instructors' className={({ isActive }) =>
                             isActive
@@ -55,22 +55,14 @@ const Navbar = () => {
 
                             instructors
                         </NavLink>
-                        <NavLink to='/myclasses' className={({ isActive }) =>
-                            isActive
-                                ? "active font-bold uppercase"
-                                : "font-bold uppercase"
-                        }>
-
-                            my classes
-                        </NavLink>
-                        <NavLink to='/dashboard' className={({ isActive }) =>
+                        {user?.email && <NavLink to='/dashboard' className={({ isActive }) =>
                             isActive
                                 ? "active font-bold uppercase"
                                 : "font-bold uppercase"
                         }>
 
                             dashboard
-                        </NavLink>
+                        </NavLink>}
 
                     </ul>
                 </div>

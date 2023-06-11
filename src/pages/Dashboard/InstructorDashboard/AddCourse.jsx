@@ -65,7 +65,6 @@ const AddCourse = () => {
             body: formData,
         }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
     }
-    console.log(imgUpload);
     return (
         <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
             <h2 className="text-3xl text-center font-bold mb-8">Add a Course</h2>
