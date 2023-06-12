@@ -18,6 +18,7 @@ import UpdateCourse from "../pages/Dashboard/InstructorDashboard/UpdateCourse";
 import Modal from "../components/modal";
 import Courses from "../pages/AllCourses/Courses";
 import AllInstructor from "../pages/AllInstructor/AllInstructor";
+import Payment from "../pages/Dashboard/UserDashboard/Payment";
 
 
 
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/enrolledClasses',
         element: <MyEnrolledClasses></MyEnrolledClasses>
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment></Payment>,
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_DOMAIN}/booking/payment/${params.id}`)
       },
       {
         path: '/dashboard/paymentHistory',

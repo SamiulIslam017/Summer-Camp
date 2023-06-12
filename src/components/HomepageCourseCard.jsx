@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../layouts/Main";
 
 
 const HomepageCourseCard = () => {
 
     const [courses, setCourses] = useState([]);
     const { user } = useContext(AuthContext);
+    const { theme } = useContext(ThemeContext)
     const [hidden, setHidden] = useState({ user })
     const navigate = useNavigate()
     useEffect(() => {
@@ -39,6 +41,7 @@ const HomepageCourseCard = () => {
                 price: course.price,
                 date: new Date(),
                 user_email: user?.email,
+                payment_status: false
             }
             fetch(`${import.meta.env.VITE_DOMAIN}/booking`, {
                 method: 'POST',
@@ -80,7 +83,7 @@ const HomepageCourseCard = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8 mb-10 md:mb-20 lg:mb-20">
             {
-                courses.slice(0, 6).map(course => <div key={course._id} className="card glass">
+                courses.slice(0, 6).map(course => <div key={course._id} className={`card ${theme === 'dark' ? 'bg-[#fff] text-[#000]' : 'glass'}`}>
                     <figure><img className="h-[200px] w-full object-cover" src={course.image} /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{course.course_name}</h2>

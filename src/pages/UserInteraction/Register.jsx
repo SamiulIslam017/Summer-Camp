@@ -4,6 +4,7 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../layouts/Main";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_API;
 const Register = () => {
@@ -11,6 +12,7 @@ const Register = () => {
     const { createUser, googleLogin } = useContext(AuthContext);
     const [toggle1, setToggle1] = useState(false)
     const [toggle2, setToggle2] = useState(false)
+    const { theme } = useContext(ThemeContext)
     const [imgUpload, setImageUpload] = useState('')
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     const navigate = useNavigate()
@@ -86,12 +88,12 @@ const Register = () => {
         }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
     }
     return (
-        <div className="hero  w-10/12 mx-auto">
+        <div className="hero w-10/12 mx-auto">
             <div className="hero-content flex flex-col lg:flex-row">
                 <div className="text-center lg:text-left w-7/12" >
                     <img src="https://i.ibb.co/q1nBJsY/9-SCENE.png" alt="" />
                 </div>
-                <div className="card flex-shrink-0 w-5/12  shadow-2xl bg-base-100">
+                <div className={`card flex-shrink-0 w-5/12 shadow-2xl bg-base-100 ${theme === 'dark' ? 'text-[#000]' : 'text-[#000]'}`}>
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                         <div className="form-control">
                             <label className="label">
@@ -156,7 +158,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
