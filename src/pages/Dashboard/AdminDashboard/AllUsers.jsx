@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 const AllUsers = () => {
     const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
@@ -80,6 +81,9 @@ const AllUsers = () => {
     }
     return (
         <div className="w-10/12 mx-auto my-20">
+            <Helmet>
+                <title>Admin Dashboard | Manage Users</title>
+            </Helmet>
             <h1 className="text-3xl font-bold">Total Users: {users.length}</h1>
             <div className="overflow-x-auto mt-6">
                 <table className="table">

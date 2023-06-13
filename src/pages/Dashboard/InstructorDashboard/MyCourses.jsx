@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useCourses from "../../../hooks/useCourses";
 import { FaEdit } from "react-icons/fa";
 import EmptyRoute from "../../../components/EmptyRoute";
+import { Helmet } from "react-helmet-async";
 
 
 const MyCourses = () => {
@@ -9,6 +10,9 @@ const MyCourses = () => {
     console.log(courses);
     return (
         <>
+            <Helmet>
+                <title>Instructor Dashboard | My Courses</title>
+            </Helmet>
             {
                 courses && Array.isArray(courses) && courses.length > 0 ? <div className="w-10/12 mx-auto my-20">
                     <h1 className="text-3xl font-bold">Total Courses: {courses.length}</h1>

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_API;
 const AddCourse = () => {
@@ -67,6 +68,9 @@ const AddCourse = () => {
     }
     return (
         <div className='w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
+            <Helmet>
+                <title>Instructor Dashboard | Add A Course</title>
+            </Helmet>
             <h2 className="text-3xl text-center font-bold mb-8">Add a Course</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>

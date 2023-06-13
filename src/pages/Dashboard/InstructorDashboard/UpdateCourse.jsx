@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_API;
 const UpdateCourse = () => {
@@ -55,6 +56,9 @@ const UpdateCourse = () => {
     console.log(imgUpload);
     return (
         <div className='w-8/12 mx-auto min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50'>
+            <Helmet>
+                <title>Instructor Dashboard | Update A Course</title>
+            </Helmet>
             <h2 className="text-3xl text-center font-bold mb-8">Add a Course</h2>
             <form onSubmit={handleUpdate} className="w-full">
                 <div className='grid grid-cols-1  gap-10'>

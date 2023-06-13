@@ -3,6 +3,7 @@ import useBooking from "../../../hooks/useBooking";
 import Swal from "sweetalert2";
 
 import EmptyRoute from "../../../components/EmptyRoute";
+import { Helmet } from "react-helmet-async";
 
 
 const MySelectedClasses = () => {
@@ -42,6 +43,9 @@ const MySelectedClasses = () => {
     }
     return (
         <>
+            <Helmet>
+                <title>Student Dashboard | My Selected Course</title>
+            </Helmet>
             {
                 isLoading ? <div className="min-h-screen flex justify-center items-center"><img src="https://i.ibb.co/GMCwfS6/loading-spinner.gif" /></div> : <>
                     {

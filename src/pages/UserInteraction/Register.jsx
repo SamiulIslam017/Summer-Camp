@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { ThemeContext } from "../../layouts/Main";
+import { Helmet } from "react-helmet-async";
 
 const img_hosting_token = import.meta.env.VITE_IMGBB_API;
 const Register = () => {
@@ -15,7 +16,15 @@ const Register = () => {
     const { theme } = useContext(ThemeContext)
     const [imgUpload, setImageUpload] = useState('')
     const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const handleImage = e => {
+        const formData = new FormData();
+        formData.append('image', e.target.files[0])
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData,
+        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
+    }
     const onSubmit = async (data) => {
         try {
             await createUser(data.email, data.password, data.name, imgUpload);
@@ -79,16 +88,12 @@ const Register = () => {
                 console.log(error);
             })
     }
-    const handleImage = e => {
-        const formData = new FormData();
-        formData.append('image', e.target.files[0])
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData,
-        }).then(res => res.json()).then(imgData => { setImageUpload(imgData.data.display_url) })
-    }
+
     return (
         <div className="hero w-10/12 mx-auto">
+            <Helmet>
+                <title>Fashion Design | Register</title>
+            </Helmet>
             <div className="hero-content flex flex-col lg:flex-row">
                 <div className="text-center lg:text-left w-7/12" >
                     <img src="https://i.ibb.co/q1nBJsY/9-SCENE.png" alt="" />

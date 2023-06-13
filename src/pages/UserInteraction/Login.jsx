@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ThemeContext } from "../../layouts/Main";
+import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
@@ -17,11 +18,7 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/'
     const onSubmit = (data) => {
-        // if (loading) {
-        //     return <div className="min-h-screen flex justify-center items-center"><img src="https://i.ibb.co/GMCwfS6/loading-spinner.gif" /></div>
-        // }else{
 
-        // }
         login(data.email, data.password)
             .then(result => {
                 console.log(result);
@@ -69,6 +66,9 @@ const Login = () => {
     return (
 
         <div className="hero  w-10/12 mx-auto">
+            <Helmet>
+                <title>Fashion Design | Login</title>
+            </Helmet>
             <div className="hero-content flex flex-col lg:flex-row">
                 <div className="text-center lg:text-left w-7/12" >
                     <img src="https://i.ibb.co/q1nBJsY/9-SCENE.png" alt="" />
