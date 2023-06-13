@@ -19,6 +19,7 @@ import Modal from "../components/modal";
 import Courses from "../pages/AllCourses/Courses";
 import AllInstructor from "../pages/AllInstructor/AllInstructor";
 import Payment from "../pages/Dashboard/UserDashboard/Payment";
+import InstructorRoute from "./InstructorRoute";
 
 
 
@@ -81,16 +82,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/addCourse',
-        element: <AddCourse></AddCourse>
+        element: <InstructorRoute><AddCourse></AddCourse></InstructorRoute>
       },
       {
         path: '/dashboard/updateCourse/:id',
-        element: <UpdateCourse></UpdateCourse>,
+        element: <InstructorRoute><UpdateCourse></UpdateCourse></InstructorRoute>,
         loader: ({ params }) => fetch(`${import.meta.env.VITE_DOMAIN}/courses/${params.id}`)
       },
       {
         path: '/dashboard/myCourse',
-        element: <MyCourses></MyCourses>
+        element: <InstructorRoute><MyCourses></MyCourses></InstructorRoute>
       },
       {
         path: '/dashboard/modal/:id',
