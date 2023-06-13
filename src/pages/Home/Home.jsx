@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import FeatureCourse from "./FeatureCourse/FeatureCourse";
 import InstructorSection from "./InstructorsSection/InstructorSection";
 import Slider from "./Slider/Slider";
@@ -7,6 +8,9 @@ import WelcomeSection from "./WelcomSection/WelcomeSection";
 const Home = () => {
     return (
         <div className="flex flex-col gap-10 md:gap-20 lg:gap-20 mb-10 md:mb-20 lg:mb-20">
+            <Helmet>
+                <title>Fashion Design | Home</title>
+            </Helmet>
             <div className="hero min-h-[50vh] mb-10 md:hidden lg:hidden" style={{ backgroundImage: `url('https://i.ibb.co/PxVYmsr/student-online-cute-girl-glasses-sweater-studying-computer-typing-keyboard.jpg')` }}>
                 <div className="hero-overlay bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
