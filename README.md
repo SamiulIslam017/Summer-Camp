@@ -1,6 +1,8 @@
 ## Summer Camp Fashion Design Course
+![My Remote Image](https://i.ibb.co/nLzZd39/FASHION-DESIGN-removebg-preview.png)
 
 ## [live site link] (https://fashion-design-client.web.app/)
+
 
 ## Feature available this project
 
@@ -15,8 +17,9 @@
 - All work so called CRUD operation done using mongoDB
 - Also dark and light theme mode added
 
-##Library used for this project
---
+
+Library used for this project
+---
 - tanstack-react-query -> for dealing with server api replace with useEffect Hook
 - axios -> This use for all post / patch method with jwt token verification handle by interceptor
 - firebase -> For user authentication and hosting client site
@@ -28,6 +31,5 @@
 - sweetalert2 -> This package give better ui for notify user all action
 - swiper -> This package use for homepage slider
 
-> For Hosting i used firebase free hosting for server used express and database use MongoDb and authentication system used firebase (email/password and google)
+#### For Hosting i used firebase free hosting for server used express and database use MongoDb and authentication system used firebase (email/password and google)
 
----
