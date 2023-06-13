@@ -5,7 +5,6 @@
 
 
 ## Feature available this project
-
 ---
 
 - There was a firebase authentication system for user login register and also google login
@@ -17,8 +16,7 @@
 - All work so called CRUD operation done using mongoDB
 - Also dark and light theme mode added
 
-
-Library used for this project
+## Library used for this project
 ---
 - tanstack-react-query -> for dealing with server api replace with useEffect Hook
 - axios -> This use for all post / patch method with jwt token verification handle by interceptor
@@ -31,5 +29,5 @@ Library used for this project
 - sweetalert2 -> This package give better ui for notify user all action
 - swiper -> This package use for homepage slider
 
-#### For Hosting i used firebase free hosting for server used express and database use MongoDb and authentication system used firebase (email/password and google)
+# For Hosting i used firebase free hosting for server used express and database use MongoDb and authentication system used firebase (email/password and google)
 
