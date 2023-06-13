@@ -1,6 +1,7 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import useInstructor from "../hooks/useInstructor";
+import { FaCcStripe, FaClipboardCheck, FaFlagCheckered, FaHands, FaHome, FaHubspot, FaRegAddressCard, FaRegFolderOpen, FaUsersCog } from "react-icons/fa";
 
 
 const UserDashboard = () => {
@@ -31,47 +32,48 @@ const UserDashboard = () => {
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
-                            }>Manage Users</NavLink></li>
+                            }><FaUsersCog></FaUsersCog> Manage Users</NavLink></li>
                             <li><NavLink to='/dashboard/allCourses' className={({ isActive }) =>
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
-                            }>Manage Courses</NavLink></li>
+                            }><FaHubspot></FaHubspot> Manage Courses</NavLink></li>
                         </> : isInstructor || isInstructorLoading ? <>
                             <li><NavLink to='/dashboard/addCourse' className={({ isActive }) =>
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
-                            }>Add Course</NavLink></li>
+                            }><FaRegAddressCard></FaRegAddressCard> Add Course</NavLink></li>
                             <li><NavLink to='/dashboard/myCourse' className={({ isActive }) =>
                                 isActive
                                     ? "active bg-neutral-300 font-bold uppercase"
                                     : "font-bold uppercase"
-                            }>My Course</NavLink></li>
+                            }><FaRegFolderOpen></FaRegFolderOpen> My Course</NavLink></li>
                         </> :
                             <>
                                 <li><NavLink to='/dashboard/selectedClasses' className={({ isActive }) =>
                                     isActive
                                         ? "active bg-neutral-300 font-bold uppercase"
                                         : "font-bold uppercase"
-                                }>My Selected Classes</NavLink></li>
+                                }><FaClipboardCheck></FaClipboardCheck> My Selected Classes</NavLink></li>
                                 <li><NavLink to='/dashboard/enrolledClasses' className={({ isActive }) =>
                                     isActive
                                         ? "active bg-neutral-300 font-bold uppercase"
                                         : "font-bold uppercase"
-                                }>My Enrolled Classes</NavLink></li>
+                                }><FaFlagCheckered></FaFlagCheckered> My Enrolled Classes</NavLink></li>
                                 <li><NavLink to='/dashboard/paymentHistory' className={({ isActive }) =>
                                     isActive
                                         ? "active bg-neutral-300 font-bold uppercase"
                                         : "font-bold uppercase"
-                                }>Payment History</NavLink></li>
+                                }><FaCcStripe></FaCcStripe> Payment History</NavLink></li>
 
 
                             </>
 
                     }
                     <div className="divider"></div>
-                    <li><Link className="font-bold uppercase" to='/'>HomePage</Link></li>
+                    <li><Link className="font-bold uppercase" to='/'><FaHome></FaHome> HomePage</Link></li>
+                    <li><Link className="font-bold uppercase" to='/courses'><FaHands></FaHands> Courses</Link></li>
                 </ul>
 
             </div>
